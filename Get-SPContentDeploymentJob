@@ -1,0 +1,2 @@
+Get-SPContentDeploymentJob "rise-staging-live" | Set-SPContentDeploymentJob -IncrementalEnabled:$false
+Get-SPContentDeploymentJob "rise-staging-live" | Set-SPContentDeploymentJob -IncrementalEnabled:$true

@@ -1,3 +1,0 @@
-SPSecurity.RunWithElevatedPrivileges(delegate()
-{
-});
