@@ -1,0 +1,24 @@
+public void DeleteData(SPListItemCollection items, SPList itemlist)
+{
+    SPSecurity.RunWithElevatedPrivileges(delegate()
+    {
+        using (SPSite site = new SPSite(itemlist.ParentWeb.Site.Url))
+        {
+            SPWeb web = site.OpenWeb(itemlist.ParentWeb.ID);
+            SPList list = web.Lists[itemlist.ID];
+
+            StringBuilder sbDelete = new StringBuilder();
+            sbDelete.Append("<?xml version=\"1.0\" encoding=\"UTF-8\"?><Batch>");
+            foreach (SPListItem item in items)
+            {
+                sbDelete.Append("<Method>");
+                sbDelete.Append("<SetList Scope=\"Request\">" + list.ID + "</SetList>");
+                sbDelete.Append("<SetVar Name=\"ID\">" + Convert.ToString(item.ID) + "</SetVar>");
+                sbDelete.Append("<SetVar Name=\"Cmd\">Delete</SetVar>");
+                sbDelete.Append("</Method>");
+            }
+            sbDelete.Append("</Batch>");
+            web.ProcessBatchData(sbDelete.ToString());
+        }
+    });
+}
