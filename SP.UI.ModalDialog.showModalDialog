@@ -1,0 +1,20 @@
+<script language="javascript" type="text/javascript">
+    function openNewPage() { 
+        //debugger; 
+        SP.UI.ModalDialog.showModalDialog({
+            url: "/Pages/NewPage.aspx", 
+            title: "New Page", 
+            allowMaximize: true, 
+            showClose: true, 
+            width: 800, 
+            height: 600, 
+            dialogReturnValueCallback: silentCallback 
+        }); 
+    }; 
+  
+    function silentCallback(dialogResult, returnValue) { }
+    
+    function refreshCallback(dialogResult, returnValue) {
+        SP.UI.ModalDialog.RefreshPage(SP.UI.DialogResult.OK);
+    }
+</script>
