@@ -1,3 +1,4 @@
 SPSecurity.RunWithElevatedPrivileges(delegate()
 {
+	//code run as system/sharepoint, but need create new spsite and spweb.
 });
